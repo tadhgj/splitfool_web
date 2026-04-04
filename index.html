@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- garamond font google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Handjet:wght,ELSH@100..900,2&display=swap" rel="stylesheet">
+
+    <title>Splitfool</title>
+    <!-- todo: favicon of some sort -->
+
+    <!-- todo: meta description -->
+
+    <!-- todo: PWA -->
+
+    <link href="styles.css" rel="stylesheet">
+    <script src="code.js"></script>
+</head>
+<body>
+    <h1>Splitfool</h1>
+    <!-- <p>Splitwise, for fools. Wait, that didn't come out right...</p> -->
+
+    <div class="product">
+        <!-- bill -->
+        
+        <div class="billTotalContainer labelAndInput">
+            <label for="billTotal">Bill Total: <span class="currencySymbol">$</span></label>
+            <input id="billTotal" class="numericInputType" type="number" placeholder="0.00" ontouchstart="" min="0" step="0.01" oninput="this.size = this.value.length + 1">
+        </div>
+
+        <span class="sectionLabel">People</span>
+        <div id="personList"></div>
+        <!-- add person -->
+
+        <input id="newPerson" type="text" placeholder="New Person Name">
+        <button id="addPersonBtn">Add</button>
+
+        <!-- output -->
+        <div id="outputSection"></div>
+
+        <!-- clear cookies -->
+        <button id="clearCookiesBtn">Clear Saved Data</button>
+    </div>
+</body>
+</html>
