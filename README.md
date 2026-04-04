@@ -1,0 +1,1 @@
+Visit [splitfool.com](https://splitfool.com/) to split your bills with ease
