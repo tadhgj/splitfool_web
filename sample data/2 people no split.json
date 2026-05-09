@@ -1,0 +1,31 @@
+{
+    "billTotal": "99.99",
+    "peopleList": [
+        {
+            "name": "Jadge",
+            "id": 1,
+            "items": [
+                {
+                    "name": "dish",
+                    "cost": 15.39
+                }
+            ],
+            "paid": null
+        },
+        {
+            "name": "Caitlin",
+            "id": 2,
+            "items": [
+                {
+                    "name": "dish",
+                    "cost": 13.59
+                },
+                {
+                    "name": "drink",
+                    "cost": 5.99
+                }
+            ],
+            "paid": null
+        }
+    ]
+}

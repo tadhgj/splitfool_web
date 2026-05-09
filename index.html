@@ -23,29 +23,101 @@
     <script src="code.js"></script>
 </head>
 <body>
-    <h1>Splitfool</h1>
-    <!-- <p>Splitwise, for fools. Wait, that didn't come out right...</p> -->
+    <div class="content">
 
-    <div class="product">
-        <!-- bill -->
-        
-        <div class="billTotalContainer labelAndInput">
-            <label for="billTotal">Bill Total: <span class="currencySymbol">$</span></label>
-            <input id="billTotal" class="numericInputType" type="number" placeholder="0.00" ontouchstart="" min="0" step="0.01" oninput="this.size = this.value.length + 1">
+        <div class="header">
+            <div class="productName">
+                <h1>Splitfool</h1>
+                <!-- <p>Splitwise, for fools. Wait, that didn't come out right...</p> -->
+            </div>
+            <!-- <div class="credit">
+                <span>made by</span>
+                <span class="creditName">Tadhg Jarzebowski</span>
+            </div> -->
         </div>
 
-        <span class="sectionLabel">People</span>
-        <div id="personList"></div>
-        <!-- add person -->
+        <!-- 
+        there are two types of inputs:
+        - prominent
+        - subtle
+        both have a border, but the prominent one has a border around the whole input, where subtle only has a bottom border
+        additionally, the prominent input has a background, where the subtle one has a transparent background
+        both maintain the same 'hover' / 'active' behaviors, and look the same when focused.
 
-        <input id="newPerson" type="text" placeholder="New Person Name">
-        <button id="addPersonBtn">Add</button>
+        there are two other types of inputs:
+        - text
+        - numeric (currency)
 
-        <!-- output -->
-        <div id="outputSection"></div>
 
-        <!-- clear cookies -->
-        <button id="clearCookiesBtn">Clear Saved Data</button>
+
+        a regular input can turn into a contenteditable span
+        however, the behavior needs to stay the same.
+          -->
+
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <ol>
+                <li>
+                    For each person that got food, enter their name
+                    <br>
+                    (eg. To enter two people, you type 'John', press 'enter', and then type 'Jane'. The input stays focused.)
+                </li>
+                <li>
+                    For each person, for every item they got, click 'Add item', and enter the cost of this dish. You can also enter the dish name if you like
+                </li>
+                <li>
+                    Once you've added all the dishes on the bill to someone's tab, enter the <strong>entire</strong> amount paid, <i>including tax and tip</i>.
+                    <br>
+                    Splitfool will show how much each person owes, in proportion to how much their food cost.
+                </li>
+                <li>
+                    If more than one person put money down (let's say you all chipped in a couple bills from your wallets), you can go back to the 'fools' section, and and type in the 'Paid:' input. Splitfool will show everyone's net settlement.
+                    <br><br>
+                    If you have multiple people who put down money, it's often easier to designate one person to take all they money and then distribute it out as needed, because it's simpler than everyone sending out 5 venmo payments. Everyone pays one person, and that one person pays people out.
+                </li>
+            </ol>
+        </div>
+
+        <div class="product">
+            
+
+            <div class="sectionHeader">The Fools</div>
+            <!-- <span class="sectionLabel">People</span> -->
+            <div id="personList"></div>
+            <!-- add person -->
+
+            <input id="newPerson" type="text" placeholder="New Person Name">
+            <button id="addPersonBtn">Add</button>
+
+            <div class="sectionHeader">The Split</div>
+
+            <!-- bill -->
+            
+            <div class="billTotalContainer labelAndInput">
+                <label for="billTotal">Bill Total: <span class="currencySymbol">$</span></label>
+                <input id="billTotal" class="numericInputType" type="number" placeholder="0.00" ontouchstart="" min="0" step="0.01" oninput="this.size = this.value.length + 1">
+
+            </div>
+            <br>
+
+            Bill Total: 
+            <label class="input-sizer-2">
+                <span>$</span>
+                <input type="tel" oninput="this.parentNode.dataset.value = this.value" size="4" placeholder="0.00">
+            </label>
+
+            <!-- output -->
+            <div id="outputSection"></div>
+
+            <!-- clear cookies -->
+            <button id="clearCookiesBtn">Clear Saved Data</button>
+            <!-- export cookies -->
+            <textarea id="exportCookiesValue" type="text" readonly></textarea>
+            <br>
+            <!-- import cookies -->
+            <textarea id="importCookiesValue" type="text" placeholder="Paste exported data here"></textarea>
+            <button id="importCookiesBtn">Import Data</button>
+        </div>
     </div>
 </body>
 </html>

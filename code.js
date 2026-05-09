@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    // ignore hover on mobile devices
     // https://stackoverflow.com/a/30303898
     function watchForHover() {
         var hasHoverClass = false;
@@ -32,7 +33,6 @@ $(document).ready(function() {
 
         enableHover();
     }
-
     watchForHover();
 
     function setCookie(cname, cvalue, exdays) {
@@ -42,6 +42,7 @@ $(document).ready(function() {
         // debug print length of cooke
         console.log("Setting cookie " + cname + " with length " + cvalue.length);
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        document.getElementById("exportCookiesValue").value = cvalue; // set export input value to cookie value for easy copying
     }
 
     function getCookie(cname) {
@@ -96,6 +97,29 @@ $(document).ready(function() {
     // on start
     readDataFromCookies();
     parsePersonInputChange();
+
+    // on import cookies button click
+    $('#importCookiesBtn').click(function() {
+        var importedDataString = $('#importCookiesValue').val();
+        if (importedDataString) {
+            try {
+                var allData = JSON.parse(importedDataString);
+                if (allData.billTotal) {
+                    $('#billTotal').val(allData.billTotal);
+                }
+                if (allData.peopleList) {
+                    peopleList = allData.peopleList;
+                    updatePersonListDisplay();
+                }
+                // save to cookies
+                saveDataToCookies();
+            }
+            catch(err) {
+                console.log("Error parsing imported data: " + err);
+                alert("Error parsing imported data. Please make sure you pasted the correct exported data.");
+            }
+        }
+    });
 
     // on update
     $('#newPerson').on('input', function() {
@@ -265,6 +289,7 @@ $(document).ready(function() {
         updatePersonListDisplay();
     });
 
+    // on enter of new item cost
     $('#personList').on('keypress', '.personItemCostInput', function(e) {
         if(e.which == 13) { // Enter key code
             // switch focus on personItemNameInput
@@ -273,6 +298,7 @@ $(document).ready(function() {
         }
     });
 
+    // on enter of new item name
     $('#personList').on('keypress', '.personItemNameInput', function(e) {
         if(e.which == 13) { // Enter key code
             var personId = $(this).closest('.person').attr('id').split('-')[1];
@@ -280,13 +306,13 @@ $(document).ready(function() {
         }
     });
 
-    // on button click
+    // on button click of new item add
     $('#personList').on('click', '.addPersonItemBtn', function() {
         var personId = $(this).data('id');
         addItemToPerson(personId);
     });
 
-    // on button click
+    // on button click of green 'add item' button
     $('body').on('click', '.showAddItemBtn', function() {
         var personId = $(this).data('id');
         // remove this button
